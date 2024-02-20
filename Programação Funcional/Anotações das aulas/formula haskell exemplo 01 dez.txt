@@ -1,0 +1,3 @@
+area_circulo raio = pi*raio^2
+
+dobro :: int -> int

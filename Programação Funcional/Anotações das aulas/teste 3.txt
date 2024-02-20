@@ -1,0 +1,5 @@
+termo_n n = termo_n’ n 0 1
+termo_n’ n a b
+  | n == 0 = a
+  | n == 1 = b
+  | n >= 2 = termo_n’ (n-1) b (a+b)

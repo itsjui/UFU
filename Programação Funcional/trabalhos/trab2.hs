@@ -1,0 +1,111 @@
+{-- Nome: Julio Cesar de Jesus Batista --}
+
+{-- 1- Titulo: Produção de Um Recibo Fiscal em um Supermercado --}
+
+{-- Definindo o tipo de cada variável --}
+
+type Nome = String
+type Preco = Int
+type CodBar = Int
+type BaseDeDados = [(CodBar,Nome,Preco)]
+type ListaDeCodigos = [CodBar]
+type Recibo = [(Nome,Preco)]
+type TipoDoRecibo = [(Nome,Preco)]
+type ListaDeProdutos = [(CodBar,Nome,Preco)]
+
+
+
+{-- Definindo BaseDeDados como ListaDeProdutos --}
+
+
+listaDeProdutos :: BaseDeDados
+listaDeProdutos =  [ (1234, "Oleo DoBom, 1l" , 195)
+                   , (4756, "Chocolate Cazzeiro, 250g" , 180)
+                   , (3216, "Arroz DoBom, 5Kg", 213)
+                   , (5823, "Balas Pedregulho, 1Kg" , 379)
+                   , (4719, "Queijo Mineirim, 1Kg" , 449)
+                   , (6832, "Iogurte Maravilha, 1Kg" , 499)
+                   , (1112, "Rapadura QuebraDente, 1Kg", 80)
+                   , (1111, "Sal Donorte, 1Kg", 221)
+                   , (1113, "Cafe DoBom, 1Kg", 285)
+                   , (1115, "Biscoito Bibi, 1Kg", 80)
+                   , (3814, "Sorvete QGelo, 1l", 695)] 
+
+
+
+
+{-- Função principal --}
+
+
+main :: IO ()
+main = do
+	 putStrLn (geraRecibo listaDeProdutos [1234,3216,4719,1112,1113,3814])
+         y <- getLine
+	 putStrLn ("End")
+
+
+{-- Funções Abordadas --}
+	
+{-- Determina o tamanho padrao de cada linha--}
+
+tamLinha :: Int
+tamLinha = 30
+
+
+
+{-- Escreve o formato correto do preco em "x.y".--}
+
+formataCentavos :: Preco -> String
+formataCentavos x = foldr (++) [] [show(div x 100) ++ "." ++ show (rem x 100)]
+	
+
+
+{-- Coloca a posicao adequada do nome e do preco.--}
+
+formataLinha :: (Nome,Preco) -> String
+formataLinha l = (fst l) ++ replicate (tamLinha - (length (fst l) + length (formataCentavos (snd l))))'.' ++ formataCentavos (snd l) ++ "\n"
+
+{-- Determina cada item em sequencia do outro.--}
+
+formataLinhas :: [(Nome,Preco)] -> String
+formataLinhas x = foldl (++) "" (map formataLinha x)
+
+
+{-- Formata preco em dado para recibo.--}
+
+formataTotal :: Preco -> String
+formataTotal preco = "Total" ++ replicate (tamLinha - (6 +(length (formataCentavos preco))))'.' ++ "$" ++ formataCentavos (preco) ++ "\n"
+
+
+{-- Soma todos os valores de cada item.--}
+
+geraTotal :: Recibo -> Preco
+geraTotal x = sum (map (snd) x)
+
+
+{-- Função que formata Recibo.--}
+
+formataRecibo :: TipoDoRecibo -> String
+formataRecibo recibo = "Supermercado QLegal" ++ "\n" ++ formataLinhas (recibo) ++ formataTotal(geraTotal(recibo))
+
+
+{-- Função que acha atraves do CodBar.--}
+
+acha :: BaseDeDados -> CodBar -> (Nome,Preco)
+acha [] _ = ("item desconhecido", 0)
+acha ((o,p,q):xs) j
+  |o == j =  (p,q)
+  |otherwise = acha xs j
+
+
+{-- Fazendo o Recibo.--}
+
+fazRecibo :: BaseDeDados -> ListaDeCodigos -> TipoDoRecibo
+fazRecibo x y = map (acha x) y
+
+
+
+{-- Função que Gera o recibo atráves da lista de código inserida.--}
+
+geraRecibo :: BaseDeDados -> ListaDeCodigos -> String
+geraRecibo x y = formataRecibo (fazRecibo x y)

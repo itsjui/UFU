@@ -1,0 +1,16 @@
+Exercício 2, CUT/TABLE.
+Grupo 10.
+Alunos: 
+12211BSI221 Davi Rocha Faria
+12211BSI233 Sarah Batista Pereira
+12211BSI253 Luisa Mariano Castilho
+11821BSI243 Gabriella Lima Nascimento
+12211BSI231 Rhuan Leonardo Baffero Marques
+12021BSI258 Júlio cesar de Jesus Batista 
+12111BSI280 Diogo Honório Rodrigues Silva
+
+
+video 1 - cortes - arvore: https://www.youtube.com/watch?v=bj12C4qoawM
+
+video 2 - table:
+https://www.youtube.com/watch?v=11v_Zynu9gs

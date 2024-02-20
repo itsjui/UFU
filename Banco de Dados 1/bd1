@@ -1,0 +1,348 @@
+-- Active: 1683985760808@@127.0.0.1@3306
+CREATE TABLE IF NOT EXISTS cliente ( 
+
+  cpf_cliente VARCHAR(11) NOT NULL, 
+
+  nome VARCHAR(45) NOT NULL, 
+
+  endereço VARCHAR(255) NULL, 
+
+  telefone VARCHAR(12) NOT NULL, 
+
+  email VARCHAR(45) NULL, 
+
+  renda DECIMAL NOT NULL, 
+
+  fk_id_condominio INT NOT NULL; 
+
+  fk_id_venda INT NOT NULL; 
+
+ fk_id_apartamento INT NOT NULL; 
+
+fk_id_apartamento_predio INT NOT NULL; 
+
+ CONSTRAINT cliente_pk PRIMARY KEY (cpfcliente), 
+
+ CONSTRAINT cliente_condominio_fk FOREIGN KEY (fk_id_condominio) 
+
+	REFERENCES condominio(id_condominio) 
+
+	ON UPDATE CASCADE 
+
+	ON DELETE NO ACTION, 
+
+ CONSTRAINT cliente_apartamento_fk FOREIGN KEY (fk_id_apartamento) 
+
+	REFERENCES apartamento(id_apartamento) 
+
+	ON UPDATE CASCADE 
+
+	ON DELETE NO ACTION, 
+
+CONSTRAINT cliente_venda_fk FOREIGN KEY (fk_id_venda) 
+
+	REFERENCES venda(id_venda) 
+
+	ON UPDATE CASCADE 
+
+	ON DELETE NO ACTION, 
+
+CONSTRAINT cliente_apartamento_predio_pk FOREIGN KEY (fk_id_apartamento_predio) 
+
+	REFERENCES Apartamento(id_apartamento,id_predio) 
+
+	ON UPDATE CASCADE 
+
+	ON DELETE NO ACTION, 
+
+) 
+
+CREATE TABLE IF NOT EXISTS possui ( 
+
+  fk_cpf_cliente VARCHAR(11) NOT NULL, 
+
+  fk_id_apartamento INT NOT NULL, 
+
+  porcentagem_cota INT NOT NULL, 
+
+  CONSTRAINT possui_pk PRIMARY KEY (fk_cpf_cliente, fk_id_apartamento), 
+
+   CONSTRAINT fk_cliente_possui 
+
+   FOREIGN KEY (fk_cpf_cliente) 
+
+    	REFERENCES cliente (cpf_cliente) 
+
+   	 ON DELETE NO ACTION 
+
+    	ON UPDATE NO ACTION, 
+
+  CONSTRAINT fk_Apartamento_possui 
+
+    	FOREIGN KEY (fk_id_apartamento) 
+
+    	REFERENCES apartamento (id_apartamento) 
+
+    	ON DELETE NO ACTION 
+
+   	 ON UPDATE NO ACTION, 
+
+) 
+
+
+CREATE TABLE IF NOT EXISTS construcao ( 
+
+id_construcao INT NOT NULL, 
+
+data_inicio DATE NOT NULL, 
+
+data_final DATE NOT NULL, 
+
+valor_total DECIMAL NOT NULL, 
+
+fk_id_projeto INT NOT NULL, 
+
+CONSTRAINT construcao_pk PRIMARY KEY (id_construcao), 
+
+CONSTRAINT construcao_projeto_fk FOREIGN KEY (fk_id_projeto)  
+
+REFERENCES projeto(id_projeto)  
+
+ON UPDATE NO ACTION  
+
+ON DELETE NO ACTION, 
+
+); 
+
+CREATE TABLE IF NOT EXISTS predio ( 
+
+id_predio SERIAL 
+
+numero_predio INT NOT NULL, 
+
+ap_andar INT NOT NULL, 
+
+n_andares INT NOT NULL, 
+
+fk_id_construcao INT NOT NULL, 
+
+fk_id_condominio INT NOT NULL, 
+
+	 
+
+CONSTRAINT predio_pk PRIMARY KEY (id_predio), 
+
+CONSTRAINT predio_construcao_fk FOREIGN KEY (fk_id_construcao) 
+
+REFERENCES construcao(id_construcao) 
+
+    	ON UPDATE CASCADE 
+
+ 	ON DELETE NO ACTION, 
+
+CONSTRAINT predio_condominio_fk FOREIGN KEY (fk_id_condominio) 
+
+	REFERENCES condominio(id_condominio) 
+
+	ON UPDATE CASCADE 
+
+	ON DELETE NO ACTION 
+
+)    
+
+CREATE TABLE IF NOT EXISTS projeto ( 
+
+id_projeto SERIAL 
+
+nome_projeto VARCHAR(50) NOT NULL,	 
+
+n_predios INT NOT NULL, 
+
+n_andares INT NOT NULL, 
+
+orcamento INT NOT NULL, 
+
+fk_id_compra INT NOT NULL, 
+
+PRIMARY KEY (id_projeto, id_compra), 
+
+CONSTRAINT fk_projeto_compra 
+
+  FOREIGN KEY (fk_id_compra) 
+
+  	REFERENCES compra(id_compra) 
+
+	ON UPDATE CASCADE 
+
+	ON DELETE NO ACTION 
+
+) 
+
+CREATE TABLE IF NOT EXISTS compra ( 
+
+id_compra INT NOT NULL, 
+
+data DATE NOT NULL, 
+
+valor DECIMAL NOT NULL, 
+
+fk_id_fornecedor INT NOT NULL, 
+
+fk_CNPJ_construtora VARCHAR(14) NOT NULL, 
+
+CONSTRAINT compra_pk PRIMARY KEY (id_compra), 
+
+CONSTRAINT compra_Fornecedor_fk FOREIGN KEY (fk_id_fornecedor) REFERENCES fornecedor(id_fornecedor) 
+
+ON DELETE NO ACTION 
+
+ON UPDATE NO ACTION, 
+
+CONSTRAINT compra_construtora_fk FOREIGN KEY (fk_CNPJ_construtora) REFERENCES construtora(CNPJ_constutora) 
+
+ON DELETE NO ACTION 
+
+ON UPDATE NO ACTION 
+
+); 
+
+CREATE TABLE IF NOT EXISTS contem (  
+   id_apartamento SERIAL,  
+   id_venda INT NOT NULL,  
+   CONSTRAINT contem_pk PRIMARY KEY (id_apartamento, id_venda),  
+   CONSTRAINT fk_contem_apartamento FOREIGN KEY (id_apartamento)  
+     	REFERENCES apartamento (id_apartamento)  
+     	ON DELETE NO ACTION  
+     	ON UPDATE NO ACTION,  
+   CONSTRAINT fk_contem_venda FOREIGN KEY (id_venda)  
+     	REFERENCES venda (id_venda)  
+     	ON DELETE NO ACTION  
+     	ON UPDATE NO ACTION)
+
+CREATE TABLE IF NOT EXISTS apartamento (  
+   id_apartamento SERIAL,  
+   numero_apartamento INT NOT NULL,  
+   metragem_apartamento DECIMAL NOT NULL,  
+   descricao_apartamento VARCHAR(255) NOT NULL,  
+   status_apartamento VARCHAR(45) NOT NULL,  
+   fk_cnpj_construtora VARCHAR(14) NOT NULL,  
+   fk_id_predio INT NOT NULL,  
+   CONSTRAINT apartamento_pk PRIMARY KEY (id_apartamento, fk_id_predio),  
+   CONSTRAINT fk_construtora_oferta FOREIGN KEY (fk_cnpj_construtora)  
+     	REFERENCES construtora (cnpj_construtora)  
+     	ON DELETE NO ACTION  
+     	ON UPDATE NO ACTION,  
+   CONSTRAINT fk_predio_contem FOREIGN KEY (fk_id_predio)  
+     	REFERENCES predio (id_predio)  
+     	ON DELETE NO ACTION  
+     	ON UPDATE NO ACTION,  
+
+CONSTRAINT check_status_apartamento CHECK (status_apartamento IN ('disponivel', 'vendido', 'reservado', 'em construcao')); 
+)
+ 
+
+CREATE TABLE fornecedor ( 
+
+  id_fornecedor serial NOT NULL, 
+
+  cnpj_fornecedor varchar(14) NOT NULL, //apenas 14 msm? 
+
+  nome_fornecedor varchar(45) NOT NULL, 
+
+  
+
+  CONSTRAINT fcdpk PRIMARY KEY(id_fornecedor) 
+
+) 
+
+CREATE TABLE terreno ( 
+
+   id_terreno serial NOT NULL, 
+
+   endereco_terreno  varchar(255) NOT NULL, 
+
+   metragem_terreno decimal(7,2)  NOT NULL, //confirmar se eh 7,2 
+
+   descricao_terreno text NOT NULL,       //verificar se eh text ou varchar(500) 
+
+   fk_id_fornecedor serial NOT NULL, 
+
+   fk_id_compra serial NOT NULL, 
+
+   CONSTRAINT valor_terreno_positivo CHECK (metragem_terreno > 0), 
+
+   CONSTRAINT terrenopk PRIMARY KEY (id_terreno), 
+
+   CONSTRAINT trncomprafk FOREIGN KEY (fk_id_compra)  
+
+		REFERENCES compra (id_compra)  
+
+		ON UPDATE CASCADE   
+
+		ON DELETE NO ACTION, //CONFIRMAR ISSO 
+
+  CONSTRAINT trnforncfk FOREIGN KEY (fk_id_fornecedor)  
+
+	REFERENCES fornecedor(id_fornecedor)  
+
+		ON UPDATE CASCADE  
+
+		ON DELETE NO ACTION 
+
+) 
+ 
+
+CREATE TABLE corretor ( 
+
+  cpf_corretor varchar(11) NOT NULL, 
+
+  nome_corretor varchar(45) NOT NULL, 
+
+  endereco_corretor varchar(255) NOT NULL, 
+
+  telefone_corretor varchar(12) NOT NULL, 
+
+  email_corretor varchar(45) NOT NULL, 
+
+  data_inicio_corretor date NOT NULL, 
+
+  fk_cnpj_construtora varchar(14) NOT NULL, 
+
+  CONSTRAINT crtpk PRIMARY KEY (cpf_corretor), 
+
+  CONSTRAINT crtconstfk FOREIGN KEY (fk_cnpj_construtora) 
+
+   	 REFERENCES construtora (cnpj_construtora) 
+
+ 	 ON DELETE NO ACTION 
+
+   	 ON UPDATE CASCADE 
+
+) 
+ 
+CREATE TABLE venda ( 
+
+  id_venda serial NOT NULL, 
+
+  data_venda date NOT NULL, 
+
+  tipo_venda varchar(45) NOT NULL, 
+
+  valor_venda decimal(10,2) NOT NULL,    //confirmar (10,2) 
+
+  fk_cpf_corretor varchar(11) NOT NULL, 
+
+   CONSTRAINT valor_venda_positivo CHECK(valor_venda > 0), 
+
+
+  CONSTRAINT vendapk PRIMARY KEY (id_venda), 
+
+  CONSTRAINT vendacrtfk FOREIGN KEY (fk_cpf_corretor) 
+
+   	 REFERENCES corretor (cpf_corretor) 
+
+  	 ON DELETE NO ACTION 
+
+    	ON UPDATE CASCADE 
+
+) 

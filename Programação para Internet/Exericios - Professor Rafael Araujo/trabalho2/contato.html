@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Currículo de Fulano de Tal</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            width: 60%;
+            margin: 0 auto;
+            padding: 2% 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+            border-radius: 10px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: #800000;
+        }
+
+        a {
+            color: #800000; 
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .exemplo {
+            font-weight: bold;
+        }
+
+        nav ul li:hover {
+            background-color: #eee;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        footer {
+            margin-top: 20px;
+        }
+
+        form {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #800000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #660000; 
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        footer {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Contato</h1>
+        <form action="#" method="post">
+            <label for="nome"><img src="contato.png" alt="Imagem contato" width="20" height="20">Nome:</label>
+            <input type="text" id="nome" name="nome" required autofocus><br>
+            
+            <label for="email"><img src="email.png" alt="Imagem email" width="20" height="20">E-mail:</label>
+            <input type="email" id="email" name="email" required><br>
+            
+            <label for="telefone"><img src="phone.png" alt="Imagem phone" width="20" height="20">Telefone:</label>
+            <input type="tel" id="telefone" name="telefone" placeholder="(xx)xxxxx-xxxx"><br>
+            
+            <label for="recrutador">Recrutador:</label>
+            <select id="recrutador" name="recrutador">
+                <option value="sim">Sim</option>
+                <option value="nao">Não</option>
+            </select><br>
+            
+            <label for="mensagem">Mensagem:</label><br>
+            <textarea id="mensagem" name="mensagem" rows="3" cols="40"></textarea><br>
+            
+            <input type="submit" value="Enviar">
+        </form>
+        <a href="index.html">Voltar à Página Principal</a>
+        <br>
+    </main>
+    <footer>
+        <p>&copy; projeto01.</p>
+    </footer>
+</body>
+</html>

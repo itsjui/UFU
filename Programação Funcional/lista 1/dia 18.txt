@@ -1,0 +1,11 @@
+{-
+Main> not_logico True
+False
+Main> not_logico False
+True
+-}
+not_logico :: Bool -> Bool
+not_logico x
+
+    |x == False = True
+    |otherwise = False

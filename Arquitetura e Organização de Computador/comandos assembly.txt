@@ -1,0 +1,9 @@
+$zero - constante zero(0)
+$v0, $v1 - retornam resultados de funções
+$a0, $a1, $a2, $a3 - argumentos de fuções
+$ra return address
+
+li - atribuir valor inteiro para um registrador
+
+exemplo:
+li $v0, 1 -> IMPRIMA UM INTEIRO
