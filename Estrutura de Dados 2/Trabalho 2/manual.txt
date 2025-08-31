@@ -1,0 +1,14 @@
+1. Compactar arquivo
+
+   Permite escolher um arquivo de texto para ser comprimido usando o algoritmo de Huffman.
+   O usuário deve informar o nome do arquivo original ".txt" e o nome do arquivo compactado ".txt" que será gerado.
+
+2. Descompactar arquivo
+
+   Permite restaurar um arquivo que foi previamente compactado.
+   O usuário informa o nome do arquivo compactado ".txt" e o nome do arquivo de saída ".txt" , que será o texto original recuperado.
+
+3. Estatísticas
+
+   Mostra o tamanho do arquivo original e o tamanho do arquivo compactado.
+   Serve para comparar os dois e analisar o grau de compressão obtido.
