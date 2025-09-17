@@ -1,0 +1,38 @@
+body{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+    font-size: 15px;
+    background-color: #ddd;
+    margin: 0 auto;
+    width: 100%;
+    line-height: 1,5px;
+    color: #555;
+}
+
+header{
+    padding: 5px;
+    background-color: #ddd;
+    color: gray; 
+    text-align: center;
+
+}
+main{
+    width: 70%;
+    margin: auto;
+    margin-top: 0px;    
+    padding: 20px;
+    background-color: white;
+}
+@media(max-width: 600px){
+    main{
+        width: 100%;
+    }    
+}
+
+footer{
+    text-align: center;
+    width: 70%;
+    margin: auto;
+    font-size: 10px;
+    font-style: italic;
+
+}

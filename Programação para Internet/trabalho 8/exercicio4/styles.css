@@ -1,0 +1,33 @@
+body {
+    background-color: #e6e6e6;
+}
+
+main {
+    margin: 0 auto;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+li  {
+    background-color: #a3d6e3;
+    border: 1px solid #0faed6;
+    border-radius: 3px;
+    padding: 0.5rem 1rem;
+}
+
+li:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+button {
+    color: red;
+    background-color: transparent;
+    border: none;
+}
+
+ol {
+    padding-left: 0
+}
+

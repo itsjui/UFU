@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CarGo!</title>
+    <link rel="icon" href="src/imagem/icon.png">
+    <link rel="stylesheet" href="src/style/index.css">
+    <script src="src/script/index.js" defer></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <ul class="nav-links">
+          <li><a href="index.html"><img src="src/imagem/CarGo.png" alt=""></a></li>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="login.html">Meus Interesses</a></li>
+          <li><a href="login.html">Vender</a></li>
+      </ul>
+      <div class="group-search-and-button">
+        <div class="search-container">
+            <input type="text" placeholder="Search">
+        </div>
+
+        <div class="groupButton">
+          <a href="login.html"><button class="login-btn">Login</button></a>
+          <a href="cadastro.html"><button class="login-btn">Cadastrar</button></a>
+      </div>
+  </div>
+    </nav>
+      <main>
+        <div class="carrossel">
+          <div class="container">
+            <img src="src/imagem/carousel1.gif" alt="imagens promocionais">
+            <img src="src/imagem/carousel2.gif" alt="imagens promocionais">
+            <img src="src/imagem/carousel3.gif" alt="imagens promocionais">
+          </div>
+        </div>
+
+        <div class="container-main-page">
+        <section class="container-buscaVeiculos">
+          <h3>Buscar Veículos</h3>
+          <form class="formBuscaVeiculos" action="">
+            <div class="formMarcas">
+              <label for="marca" class="formLabel">Marca</label>
+              <select class="selectForm" name="formMarca" id="marca">
+                <option selected>Selecione</option>
+                <option value="Fiat">Fiat</option>
+                <option value="Byd">Build Your Dream</option>
+                <option value="Chevrolet">Chevrolet</option>
+                <option value="Audi">Audi</option>
+                <option value="Volkswagen">Volkswagen</option>
+                <option value="Mazda"></option>
+              </select>
+            </div>
+
+            <div class="formModelos">
+              <label for="modelo" class="formLabel">Modelo</label>
+              <select class="selectForm" name="formModelo" id="modelo">
+                <option selected>Selecione</option>
+                <option value="sedã">Sedã</option>
+                <option value="esportivo">Sport</option>
+                <option value="cross">Cross</option>
+              </select>
+            </div>
+
+            <div class="formCidade">
+              <label for="cidade" class="formLabel">Cidade</label>
+              <select class="selectForm" name="formCidade" id="cidade">
+                <option selected>Selecione</option>
+                <option value="Araxa">Araxá</option>
+                <option value="Araguari">Araguari</option>
+                <option value="Ituiutaba">Ituiutaba</option>
+                <option value="Patrocinio">Patrocínio</option>
+                <option value="Uberaba">Uberaba</option>
+                <option value="Uberlandia">Uberlândia</option>
+            </select>            
+            </div>
+          </form>
+          <button class="btn-form">Buscar</button>
+        </section>
+        <h3>Veiculos Disponíveis</h3>
+        <section class="container-cardVeiculos">
+          <div class="itemCard">
+              <h2>Fiat Argo</h2>
+              <img src="src/imagem/fiatArgo.png" alt="Imagem ilustrativa">
+              <p>Modelo: Hatch</p>
+              <p>Ano: 2021</p>
+              <p>Cidade: Araguari</p>
+              <span>R$ 49.900</span>
+          </div>
+      
+          <div class="itemCard">
+              <h2>AudiC</h2>
+              <img src="src/imagem/audiC.png" alt="Imagem ilustrativa">
+              <p>Modelo: Sedã</p>
+              <p>Ano: 2020</p>
+              <p>Cidade: Uberlândia</p>
+              <span>R$ 159.900</span>
+          </div>
+      
+          <div class="itemCard">
+              <h2>Chevrolet Onix</h2>
+              <img src="src/imagem/onix.png" alt="Imagem ilustrativa">
+              <p>Modelo: Hatch</p>
+              <p>Ano: 2022</p>
+              <p>Cidade: Araxá</p>
+              <span>R$ 69.900</span>
+          </div>
+      
+          <div class="itemCard">
+              <h2>Chevrolet Camaro</h2>
+              <img src="src/imagem/chevrolet camaro.png" alt="Imagem ilustrativa">
+              <p>Modelo: Coupé</p>
+              <p>Ano: 2019</p>
+              <p>Cidade: Uberlandia</p>
+              <span>R$ 329.900</span>
+          </div>
+      
+          <div class="itemCard">
+              <h2>Jeep Compass</h2>
+              <img src="src/imagem/compass.png" alt="Imagem ilustrativa">
+              <p>Modelo: SUV</p>
+              <p>Ano: 2023</p>
+              <p>Cidade: Ituiutaba</p>
+              <span>R$ 189.900</span>
+          </div>
+      
+          <div class="itemCard">
+              <h2>Mazda CX-30</h2>
+              <img src="src/imagem/CX-30.png" alt="Imagem ilustrativa">
+              <p>Modelo: SUV</p>
+              <p>Ano: 2022</p>
+              <p>Cidade: Uberaba</p>
+              <span>R$ 139.900</span>
+          </div>
+      
+          <div class="itemCard">
+              <h2>Volkswagen Brasília</h2>
+              <img src="src/imagem/brasilia.png" alt="Imagem ilustrativa">
+              <p>Modelo: Hatch</p>
+              <p>Ano: 1975</p>
+              <p>Cidade: Patrocinio</p>
+              <span>R$ 29.900</span>
+          </div>
+      
+          <div class="itemCard">
+              <h2>BYD Songplus</h2>
+              <img src="src/imagem/byd songplus.png" alt="Imagem ilustrativa">
+              <p>Modelo: SUV</p>
+              <p>Ano: 2022</p>
+              <p>Cidade: Araguari</p>
+              <span>R$ 179.900</span>
+          </div>
+      </section>
+        </section>
+      </div>
+      </main>
+      <footer>
+        <div class="container-footer">
+          <nav class="footer-links">
+            <a href="index.html">Sobre</a>
+            <a href="index.html">Contato</a>
+            <a href="index.html">Privacidade</a>
+          </nav>
+
+          <div class="copy">
+            <img src="src/imagem/CarGo.png" alt="footer img">
+            <p>Feito por: Julio Cesar, Henrique Braga e Geovana</p>
+            <p>&copy; Empresa Ficticia</p>
+          </div>
+        </div>
+      </footer>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="src/imagem/icon.png">
+    <link rel="stylesheet" href="src/style/cadastro.css">
+    <script src="src/script/cadastro.js"></script>
+    <title>CarGO! Register</title>
+</head>
+<body>
+    <main>
+        <div class="registerBox">
+            <h2>Registrar</h2>
+            <form class="formRegister" action="criarUser" method="post">
+                <div class="inputgroup">
+                    <div class="registerName">
+                        <label for="Nome">Nome</label>
+                        <br>
+                        <input type="text" id="userName" name="nome">
+                        
+                    </div>
+
+                    <div class="registerEmail">
+                        <label for="Email">Email</label>
+                        <br>
+                        <input type="email" id="emailUser" name="email">
+                        
+                    </div>
+
+                    <div class="registerCPF">
+                        <label for="CPF">CPF</label>
+                        <br>
+                        <input type="text" 
+                        id="cpfUser" 
+                        name="CPF"
+                        pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                        
+                    </div>
+
+                    <div class="registerTel">
+                        <label for="tel">Telefone</label>
+                        <br>
+                        <input type="tel" name="telefone" id="telUser">
+                    </div>
+
+                    <div class="registerPassword">
+                        <label for="password">Senha</label>
+                        <br>
+                        <input type="password" id="passwordUser" name="Senha">
+                    </div>
+
+                    <div class="registerPassword">
+                        <label for="password">Confirmar Senha</label>
+                        <br>
+                        <input type="password">
+                        <span id="passwordMensagem"></span>
+                    </div>
+                    <button>Cadastrar</button>
+                </div>
+            </form>
+            <span>ja possui conta?<a href="login.html">Login</a></span>
+        </div>
+    </main>
+</body>
+</html>

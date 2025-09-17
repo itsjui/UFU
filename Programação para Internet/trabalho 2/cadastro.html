@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Clinica ABC Health</title>
+</head>
+<body>
+    <img id="hospital" src="/trabalho 3/exercicio2/imagens/maisHospital.png" alt="">
+    <nav>
+        <ul>
+            <li><a href="index.html"><h1>Clínica ABC Health </h1></a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="galeria.html">Galeria</a></li>
+            <li><a href="cadastro.html">Cadastro</a></li>
+        </ul>
+    </nav>
+    <h1>Cadastrar</h1>
+     <main>
+        <form action="cadastraCliente.php" method="post">
+            <fieldset>
+                <legend>Dados Pessoais</legend>
+                    <div>
+                        <label for="NomeCL">Nome:</label>
+                        <input type="text" 
+                                placeholder="Digite seu nome completo"
+                                minlength="2" 
+                                maxlength="50" 
+                                id="nome" 
+                                name="nomeCliente">
+                    </div>
+                    <div>
+                        <label for="Email">Email</label>
+                        <input type="email" 
+                                id="Email" 
+                                name="EmailCliente">
+                                <label>
+                                    <input type="checkbox" name="newsletter" value="sim">
+                                    Desejo receber notícias por e-mail.
+                                </label>
+                    </div>
+                    <div>
+                        <label for="CPF">CPF</label>
+                        <input type="text" 
+                                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+                                maxlength="11" 
+                                id="CPF" 
+                                name="CPFCliente">
+                    </div>
+                    <div>
+                        <label for="Idade">Idade</label>
+                        <input type="number" 
+                                maxlength="3"
+                                id="Idade" 
+                                name="IdadeCliente">
+                    </div>
+                    <div>
+                        <label for="Telefone">Telefone</label>
+                        <input type="number" 
+                                id="Telefone" 
+                                name="TelefoneCliente">
+                    </div>
+                    <div>
+                        <label for="Data">Data de Nascimento</label>
+                        <input type="date" 
+                                id="Data" 
+                                name="DataNasc">
+                    </div>
+                    <fieldset>
+                        <legend>Sexo</legend>
+                        <div>
+                            <input type="radio" 
+                                    id="Masc" 
+                                    name="sexoCliente" 
+                                    value="Masculino">
+                            <label for="Masculino">Masculino</label>
+                        </div>
+                        <div>
+                            <input type="radio" 
+                                    id="Fem" 
+                                    name="sexoCliente" 
+                                    value="Feminino">
+                            <label for="Feminino">Feminino</label>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Estado Civil</legend>
+                    <div>
+                        <input type="radio" 
+                                id="Solteiro" 
+                                name="civilStatus" 
+                                value="Solteiro">
+                        <label for="Solteiro">Solteiro(a)</label>
+                    </div>
+                    <div>
+                        <input type="radio" 
+                                id="Casado" 
+                                name="civilStatus" 
+                                value="Casado">
+                        <label for="Casado">Casado(a)</label>
+                    </div>
+                    <div>
+                        <input type="radio" 
+                                id="Viuvo" 
+                                name="civilStatus" 
+                                value="Viuvo">
+                        <label for="Viuvo">Viuvo(a)</label>
+                    </div>
+                </fieldset>
+            </fieldset>
+            <fieldset>
+                <legend>Endereço</legend>
+                    <div>
+                        <label for="CEP">CEP</label>
+                        <input type="text" 
+                                pattern="\d{5}-\\d{3}\" 
+                                id="cep" 
+                                name="CEPCliente">
+                    </div>
+                    <div>
+                        <label for="logradouro">Logradouro</label>
+                        <input type="text" 
+                                name="LogCliente" 
+                                id="logradouro">
+                    </div>
+                    <div>
+                        <label for="bairro">Bairro</label>
+                        <input type="text" 
+                                name="bairroCliente" 
+                                id="bairro">
+                    </div>
+                    <div>
+                        <label for="Cidade">Cidade</label>
+                        <input type="text" 
+                                name="cidadeCliente" 
+                                id="cidade">
+                    </div>
+                    <div>
+                        <label for="estado">Estado:</label>
+                        <select id="estado" name="estado">
+                        <label for="estado">Estado: <label>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="PA">Pará</option>
+                            <option value="PR">Paraná</option>
+                            <option value="ES">Espirito Santo</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AC">Acre </option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="CE">Ceará</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                            <option value="DF">Distrito Federal</option>
+                        </select>
+                    </div>
+                    <label for="codigoCliente">Código do Cliente:</label>
+            <input type="text" id="codigoCliente" name="codigoCliente" value="CL12345" readonly>
+        </fieldset>
+                    <input type="hidden" name="tipoUsuario" value="cliente">
+            </fieldset>
+            <button>
+                Cadastrar
+            </button>
+        </form>
+    </main>
+</body>
+<footer>
+    <p>Av. João Naves de Ávila, Santa Monica, Uberlandia</p>
+</footer>
+
+</html>

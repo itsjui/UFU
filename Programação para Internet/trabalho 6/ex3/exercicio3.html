@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="altura">
+    <button type="button">Calcular</button>
+    <p>Digite sua altura(em cm).</p>
+    <input id="selecionaMasc" type="radio" name="sexo" value="masculino">
+    <label for="masculino">Masculino</label>
+    <input id="selecionaFem" type="radio" name="sexo" value="feminino">
+    <label for="feminino">Feminino</label>
+
+    <script>
+        const botao = document.querySelector("button");
+        botao.onclick = function Calcula_peso(){
+            const campoAltura = document.querySelector("input");
+            const campoSexo = document.querySelector('input[name="sexo"]:checked');
+            if(campoSexo.value == "masculino"){
+                let altura = parseInt(campoAltura.value);
+                let resultado = 52 + (0.75 * (altura - 152.4));
+
+                console.log("seu peso ideal é: "+ resultado);
+            }
+            else{
+                let altura = parseInt(campoAltura.value);
+                let resultado = 52 + (0.67 * (campoAltura - 152.4));
+
+                console.log("seu peso ideal é: "+ altura);
+            }
+        }
+    </script>
+</body>
+</html>

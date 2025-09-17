@@ -1,0 +1,24 @@
+javascript:
+1. destaque no card com o cursor pointer, dar zoom na imagem ao passar o mouse.
+
+Pagina restrita(Logado):
+listar minhas vendas.
+Listar meus interesses.
+Listar meus contatos.
+
+Cadastro: CPF - TELEFONE
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="/src/imagem/carousel1.gif" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="/src/imagem/carousel2.gif" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="/src/imagem/carousel3.gif"class="d-block w-100" alt="...">
+            </div>
+          </div>
+        </div>
+ 

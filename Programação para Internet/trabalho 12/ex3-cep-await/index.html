@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Desenvolvimento Web com Ajax</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-CuOF+2SnTUfTwSZjCXf01h7uYhfOBuxIhGKPbfEJ3+FqH/s6cIFN9bGr1HmAg4fQ" crossorigin="anonymous">
+  <style>
+    body {
+      padding-top: 2rem;
+    }
+
+    h3 {
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h3>Preenchendo o endereço com Ajax</h3>
+
+    <form class="row g-3">
+      <div>
+        <label for="cep" class="form-label">Informe o CEP no formato xxxxx-xxx (Ex. 38400-100)</label>
+        <input type="text" class="form-control" id="cep" name="cep">
+      </div>
+      <div>
+        <label for="rua" class="form-label">Rua:</label>
+        <input type="text" class="form-control" id="rua" name="rua">
+      </div>
+      <div>
+        <label for="bairro" class="form-label">Bairro:</label>
+        <input type="text" class="form-control" id="bairro" name="bairro">
+      </div>
+      <div>
+        <label for="cidade" class="form-label">Cidade:</label>
+        <input type="text" class="form-control" id="cidade" name="cidade">
+      </div>
+    </form>
+
+  </div>
+
+  <script>
+
+   async function buscaEndereco(cep) {
+  // Verifica se o CEP tem o formato correto (9 caracteres, incluindo o hífen)
+  if (cep.length != 9) return;
+
+  try {
+    // Faz a requisição assíncrona para o servidor (GET) passando o cep como parâmetro
+    const response = await fetch("busca-endereco.php?cep=" + cep);
+    
+    // Se o servidor respondeu mas o status não indica sucesso (200-299), trata o erro
+    if (!response.ok) {
+      errorMessage = await response.text(); // Lê o corpo da resposta para obter mais detalhes do erro
+      throw new Error(response.statusText + errorMessage); // Lança uma exceção para ser capturada no catch
+    }
+
+    // Se a resposta foi bem-sucedida, converte a resposta JSON para objeto JavaScript
+    const endereco = await response.json();
+
+    // Preenche os campos do formulário com os dados recebidos
+    const form = document.querySelector("form");
+    form.rua.value = endereco.rua;
+    form.bairro.value = endereco.bairro;
+    form.cidade.value = endereco.cidade;
+  }
+  catch (e) {
+    // Captura qualquer erro de requisição ou conversão e exibe no console
+    console.error(e);
+    return;
+  }
+}
+//b)
+// Quando monitorei a variável response:
+// - response.status = 200
+// - response.body é um ReadableStream, não contém o JSON diretamente
+// - É necessário chamar response.json() para transformar o stream em objeto JavaScript
+
+
+  </script>
+
+</body>
+
+</html>

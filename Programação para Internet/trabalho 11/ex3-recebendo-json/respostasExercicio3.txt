@@ -1,0 +1,14 @@
+1- Qual foi o código de status retornado? 
+200OK.
+
+2- Qual o valor do cabeçalho Content-Type da resposta HTTP? Por quê? 
+application/json porque trata-se de uma requisição no formato json.
+
+3- Qual o valor recebido no corpo da resposta HTTP (aba Response)? 
+{"rua":"Av Floriano","bairro":"Centro","cidade":"Uberl\u00e2ndia"}
+
+4- Qual o valor do cabeçalho Server da resposta HTTP? 
+openresty
+
+5- A requisição HTTP possui o cabeçalho Content-Type? Por quê?
+sim, porque o proprio navegador está informando que está retornando HTML, embora Content-Type é retornado somente quando acontece um metodo POST e etc.

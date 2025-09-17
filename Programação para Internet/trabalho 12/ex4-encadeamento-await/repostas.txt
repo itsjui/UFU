@@ -1,0 +1,1 @@
+no momento em que testei a API não estava funcionando, retornou o seguinte log: "não foi possivel obter a temperatura local".

@@ -1,0 +1,4 @@
+Observe os cabeçalhos da requisição HTTP 
+(Request Headers). Qual o valor dos cabeçalhos Content-Type e Content-Length?
+application/json, 63.
+ O que é apresentado na aba Payload? O que isso significa? 

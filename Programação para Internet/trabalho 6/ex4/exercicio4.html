@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exercicio4</title>
+</head>
+<body>
+    <h1>Tipo de nós DOM tree</h1>
+    <input type="text" id="myInput">
+    <pre id="output"></pre>
+
+    <p>O código da página, inicialmente, itera sobre todos os nós filhos da tag body e expõe o objeto html para cada filho (Text, HTMLHeadingElement, HTMLInputElement, Comment, HTMLPreElement, HTMLScriptElement). Vemos '[object HTMLHeadingElement]', [object HTMLInputElement] e etc. pois todos os nós html são representados como objetos.
+
+        Em seguida, é checado se o input presente na página é instância das seguintes classes/interfaces: HTMLInputElement, HTMLElement, Element, Node e EventTarget. Todas as checagens retornam true devido à hierarquia de classes e interfaces: HTMLInputElement -> HTMLElement -> Element -> Node -> EventTarget, o que faz com que o input seja uma instância de todas essas.
+        
+        Por último é exposto o tipo do nó do document, sendo HTMLDocument.</p>
+
+    <script>
+        const output = document.querySelector('#output');
+        for(let node of document.body.childNodes)
+            output.textContent += node.constructor.prototype + '\n';
+
+        const input = document.querySelector('#myInput');
+        output.textContent += (input instanceof HTMLInputElement) + '\n';
+        output.textContent += (input instanceof HTMLElement) + '\n';
+        output.textContent += (input instanceof Element) + '\n';
+        output.textContent += (input instanceof EventTarget) + '\n';
+
+        output.textContent += document.constructor.prototype + '\n';
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 6 - Ações do Sistema</title>
+</head>
+<body>
+    <h1>Executar Ações do Sistema</h1>
+    
+    <form id="formAcao">
+        <label for="acao">Digite a ação (ex: listarProdutos, adicionarProduto):</label>
+        <input type="text" id="acao" name="acao" required>
+        <button type="submit">Executar</button>
+    </form>
+
+    <div id="resultado" style="margin-top: 20px; font-size: 1.2rem;"></div>
+
+    <script>
+        document.getElementById('formAcao').addEventListener('submit', async function(event) {
+            event.preventDefault();
+    
+            const acao = document.getElementById('acao').value.trim();
+            const resultadoDiv = document.getElementById('resultado');
+    
+            try {
+                const response = await fetch(`api.php?acao=${acao}`);
+                if (!response.ok) {
+                    throw new Error("Erro na requisição: " + response.status);
+                }
+    
+                const resultado = await response.json(); // agora é JSON
+    
+                if (Array.isArray(resultado)) {
+                    // Se vier uma lista (ex: produtos), monta uma UL
+                    let html = "<ul>";
+                    for (const produto of resultado) {
+                        html += `<li>${produto.nome} - R$ ${produto.preco}</li>`;
+                    }
+                    html += "</ul>";
+                    resultadoDiv.innerHTML = html;
+                } else {
+                    // Se vier só uma mensagem
+                    resultadoDiv.textContent = resultado.mensagem || resultado.erro;
+                }
+    
+            } catch (error) {
+                console.error(error);
+                resultadoDiv.textContent = "Erro ao executar a ação.";
+            }
+        });
+    </script>
+    
+</body>
+</html>

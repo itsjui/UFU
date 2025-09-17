@@ -1,0 +1,33 @@
+c)
+1- Qual foi o código de status retornado? 
+200OK.
+
+2- Qual o valor do cabeçalho Content-Type da resposta HTTP? Por quê? 
+text/html; charset=UTF-8, significa que está retornando um texto em html.
+
+3- Qual o valor recebido no corpo da resposta HTTP (aba Response)? 
+Uberlândia.
+
+4- Qual o valor do cabeçalho Server da resposta HTTP? 
+openresty
+
+5- A requisição HTTP possui o cabeçalho Content-Type? Por quê?
+sim, porque o proprio navegador está informando que está retornando HTML, embora Content-Type é retornado somente quando acontece um metodo POST e etc.
+
+d)
+1- Qual foi o código de status retornado? 
+404 Not found.
+
+2- Qual o valor do cabeçalho Content-Type da resposta HTTP? Por quê? 
+text/html; charset=UTF-8, significa que está retornando um texto em html.
+
+3- Qual o valor recebido no corpo da resposta HTTP (aba Response)? 
+38400-500 is not available
+
+4- Qual o valor do cabeçalho Server da resposta HTTP? 
+openresty
+
+5- A requisição HTTP possui o cabeçalho Content-Type? Por quê?
+sim, porque o proprio navegador está informando que está retornando HTML, embora Content-Type é retornado somente quando acontece um metodo POST e etc.
+
+c) 200OK, Uberlândia.

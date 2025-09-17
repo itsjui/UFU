@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buscar Rank - League of Legends</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background-color: #f2f2f2;
+    }
+    #resultado {
+      margin-top: 2rem;
+      padding: 1rem;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    strong {
+      color: #333;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Consultar Rank do Invocador</h1>
+
+  <form id="formInvocador">
+    <input type="text" id="summonerName" placeholder="Digite o nick do invocador" required>
+    <button type="submit">Buscar</button>
+  </form>
+
+  <div id="resultado"></div>
+
+  <script>
+    const APIkey = 'RGAPI-66b10cb7-c324-420c-9421-6fbce2faf36d';
+
+    document.getElementById('formInvocador').addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      const nomeInvocador = document.getElementById('summonerName').value.trim();
+      const resultadoDiv = document.getElementById('resultado');
+
+      resultadoDiv.innerHTML = "Buscando informações...";
+
+      try {
+        // Buscar dados do invocador
+        const respostaSummoner = await fetch(`https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${encodeURIComponent(nomeInvocador)}`, {
+          headers: {
+            "X-Riot-Token": APIkey
+          }
+        });
+
+        if (!respostaSummoner.ok) {
+          throw new Error("Erro ao buscar o invocador. Verifique o nome digitado.");
+        }
+
+        const summonerData = await respostaSummoner.json();
+        const summonerId = summonerData.id;
+
+        // Buscar rank
+        const respostaRank = await fetch(`https://br1.api.riotgames.com/lol/league/v4/entries/by-summoner/${summonerId}`, {
+          headers: {
+            "X-Riot-Token": APIkey
+          }
+        });
+
+        const rankData = await respostaRank.json();
+
+        if (rankData.length > 0) {
+          const soloDuo = rankData.find(queue => queue.queueType === "RANKED_SOLO_5x5");
+
+          if (soloDuo) {
+            resultadoDiv.innerHTML = `
+              <p><strong>Nome:</strong> ${summonerData.name}</p>
+              <p><strong>Rank:</strong> ${soloDuo.tier} ${soloDuo.rank}</p>
+              <p><strong>Pontos (LP):</strong> ${soloDuo.leaguePoints} pontos</p>
+              <p><strong>Vitórias:</strong> ${soloDuo.wins} | <strong>Derrotas:</strong> ${soloDuo.losses}</p>
+            `;
+          } else {
+            resultadoDiv.innerHTML = `<p>${summonerData.name} está Unranked em Solo/Duo.</p>`;
+          }
+        } else {
+          resultadoDiv.innerHTML = `<p>${summonerData.name} não possui partidas ranqueadas.</p>`;
+        }
+
+      } catch (error) {
+        console.error(error);
+        resultadoDiv.textContent = "Erro ao buscar informações. Verifique o nome e tente novamente.";
+      }
+    });
+  </script>
+
+</body>
+</html>
